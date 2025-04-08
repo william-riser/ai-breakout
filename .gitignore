@@ -1,1 +1,95 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib64/
+sdist/
+setup.py
+pyproject.toml
+PKG-INFO
+*.egg-info/
+.installed.cfg
+*.whl
+venv/
 env/
+.venv/
+
+# PyInstaller
+# bundle/
+# _MEI*
+#
+# # Jupyter Notebook
+# .ipynb_checkpoints
+
+# Poetry project-specific files
+poetry.lock
+
+# mypy cache
+.mypy_cache/
+
+# Flake8 cache
+.flake8
+
+# Ruff cache
+.ruff_cache/
+
+# pyenv virtual environments
+.python-version
+
+# pip cache
+.cache/pip
+
+# Setuptools files
+.eggs/
+
+# macOS files
+.DS_Store
+
+# VS Code files
+.vscode/
+
+# PyCharm files
+.idea/
+
+# Spyder project settings
+.spyderproject
+.spyderprefs
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Log files
+*.log
+
+# Testing
+*.pytest_cache/
+.coverage
+.tox
+noxfile.py
+pylint_output.txt
+pytest_output.txt
+htmlcov/
+
+# Documentation
+docs/_build/
+
+# Others
+*.swp
+*.bak
+*.tmp
+*.pyc
+~$*
