@@ -10,8 +10,8 @@ from replay_buffer import ReplayBuffer
 
 BUFFER_SIZE = int(1e5)
 BATCH_SIZE = 32
-GAMMA = 0.9
-LR = 1e-3
+GAMMA = 0.99
+LR = 1e-4
 TARGET_UPDATE_EVERY = 100
 
 class DQNAgent():
@@ -39,10 +39,13 @@ class DQNAgent():
         self.memory.add(state, action, reward, next_state, done)
 
         self.t_step = (self.t_step + 1) % TARGET_UPDATE_EVERY
+        loss = None
         if self.t_step == 0:
             if len(self.memory) > BATCH_SIZE:
                 experiences = self.memory.sample()
-                self.learn(experiences, GAMMA)
+                # Capture the loss returned by learn()
+                loss = self.learn(experiences, GAMMA)
+        return loss
 
     def act(self, state, eps=0.):
         state = torch.from_numpy(state).float().unsqueeze(0).to(self.device)
@@ -66,14 +69,16 @@ class DQNAgent():
         loss = F.mse_loss(Q_expected, Q_targets)
         self.optimizer.zero_grad()
         loss.backward()
-
         self.optimizer.step()
 
         self.soft_update(self.qnetwork_local, self.qnetwork_target)
 
+        # Return the loss as a scalar value (using .item())
+        return loss.item()
+
     def soft_update(self, local_model, target_model, tau=1e-3):
         for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
-            target_param.data.copy_(tau*local_param.data + (1.0-tau)*target_param.data)
+            target_param.data.copy_(tau * local_param.data + (1.0 - tau) * target_param.data)
 
     def save(self, filename="dqn_breakout_ram.pth"):
         torch.save(self.qnetwork_local.state_dict(), filename)
