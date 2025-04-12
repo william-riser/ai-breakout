@@ -7,11 +7,11 @@ import random
 from dqn_model import QNetwork
 from replay_buffer import ReplayBuffer
 
-BUFFER_SIZE = int(1e5)
+BUFFER_SIZE = 50_000
 BATCH_SIZE = 32
 GAMMA = 0.99
 LR = 1e-4
-TARGET_UPDATE_EVERY = 100
+TARGET_UPDATE_EVERY = 4
 
 class DQNAgent():
     def __init__(self, state_size, action_size, seed=0):

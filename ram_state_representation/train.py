@@ -13,8 +13,8 @@ EPS_START = 1.0
 EPS_END = 0.01
 EPS_DECAY = 0.999
 SCORE_SOLVED = 100.0
-PRINT_EVERY = 100
-SAVE_EVERY = 500
+PRINT_EVERY = 250
+SAVE_EVERY = 1000
 
 env = gym.make('ALE/Breakout-ram-v5', render_mode=None)
 state_size = env.observation_space.shape[0]
@@ -24,7 +24,7 @@ print(f'State size: {state_size}, Action size: {action_size}')
 agent = DQNAgent(state_size=state_size, action_size=action_size, seed=0)
 scores = []
 scores_window = deque(maxlen=100)
-episode_losses = []  # to store the average loss per episode
+episode_losses = []
 eps = EPS_START
 
 print("\nStarting Training...")
@@ -34,7 +34,7 @@ for i_episode in tqdm(range(1, N_EPISODES + 1), desc="Training Progress"):
     terminated = False
     truncated = False
     timestep = 0
-    losses_episode = []  # losses for this episode
+    losses_episode = []
 
     while not terminated and not truncated and timestep < MAX_T:
         action = agent.act(state, eps)
@@ -50,7 +50,6 @@ for i_episode in tqdm(range(1, N_EPISODES + 1), desc="Training Progress"):
 
     scores_window.append(score)
     scores.append(score)
-    # Record the average loss for the episode (or NaN if no loss was recorded)
     avg_loss = np.mean(losses_episode) if len(losses_episode) > 0 else np.nan
     episode_losses.append(avg_loss)
     eps = max(EPS_END, EPS_DECAY * eps)
@@ -68,19 +67,19 @@ for i_episode in tqdm(range(1, N_EPISODES + 1), desc="Training Progress"):
         break
 
     # Plot scores and loss every 100 episodes for monitoring
-    if i_episode % 100 == 0:
+    if i_episode % PRINT_EVERY == 0:
         # Plot loss
-        fig_loss = plt.figure()
-        ax_loss = fig_loss.add_subplot(111)
-        # Note: some episodes might not have a training loss, so they appear as NaN.
-        plt.plot(np.arange(len(episode_losses)), episode_losses, label='Average Loss per Episode')
-        plt.ylabel('Loss')
-        plt.xlabel('Episode #')
-        plt.title('DQN Training Loss for Breakout (RAM)')
-        plt.legend()
-        plt.grid(True)
-        plt.savefig('training_loss_breakout_ram.png')
-        plt.show()
+        # fig_loss = plt.figure()
+        # ax_loss = fig_loss.add_subplot(111)
+        # plt.plot(np.arange(len(episode_losses)), episode_losses, label='Average Loss per Episode')
+        # plt.ylabel('Loss')
+        # plt.xlabel('Episode #')
+        # plt.title('DQN Training Loss for Breakout (RAM)')
+        # plt.legend()
+        # plt.grid(True)
+        # plt.savefig('training_loss_breakout_ram.png')
+        # plt.show()
+
         # Plot scores
         fig = plt.figure()
         ax = fig.add_subplot(111)
