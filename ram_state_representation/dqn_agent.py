@@ -1,4 +1,3 @@
-# dqn_agent.py
 import torch
 import torch.optim as optim
 import torch.nn.functional as F
@@ -43,7 +42,6 @@ class DQNAgent():
         if self.t_step == 0:
             if len(self.memory) > BATCH_SIZE:
                 experiences = self.memory.sample()
-                # Capture the loss returned by learn()
                 loss = self.learn(experiences, GAMMA)
         return loss
 
@@ -72,8 +70,6 @@ class DQNAgent():
         self.optimizer.step()
 
         self.soft_update(self.qnetwork_local, self.qnetwork_target)
-
-        # Return the loss as a scalar value (using .item())
         return loss.item()
 
     def soft_update(self, local_model, target_model, tau=1e-3):

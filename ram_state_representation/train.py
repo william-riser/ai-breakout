@@ -1,5 +1,3 @@
-# train.py
-
 import ale_py
 import gymnasium as gym
 import torch
@@ -41,7 +39,6 @@ for i_episode in tqdm(range(1, N_EPISODES + 1), desc="Training Progress"):
     while not terminated and not truncated and timestep < MAX_T:
         action = agent.act(state, eps)
         next_state, reward, terminated, truncated, info = env.step(action)
-        # Assume agent.step returns a loss value (or None if no training update)
         loss = agent.step(state, action, reward, next_state, terminated or truncated)
         if loss is not None:
             losses_episode.append(loss)
