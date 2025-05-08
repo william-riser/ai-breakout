@@ -46,12 +46,4 @@ python -m ale_py.roms.install
 - `evaluate.py`: Evaluation script for agent performance
 - `test_environment.py`: Environment testing utilities
 
-## Results
-
-The project generates several visualization files:
-- `q_value_evolution.png`: Shows how Q-values change over time
-- `action_distribution.png`: Displays the distribution of actions taken
-- `decision_confidence.png`: Visualizes agent's decision confidence
-- `ram_importance.png`: Shows the importance of different RAM positions
-
 
