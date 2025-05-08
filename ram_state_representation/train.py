@@ -8,7 +8,7 @@ from tqdm import tqdm
 from dqn_agent import DQNAgent
 
 N_EPISODES = 1_000_000
-MAX_T = 500
+MAX_T = 1000
 EPS_START = 1.0
 EPS_END = 0.01
 EPS_DECAY = 0.999
@@ -66,21 +66,7 @@ for i_episode in tqdm(range(1, N_EPISODES + 1), desc="Training Progress"):
         agent.save("dqn_breakout_ram_solved.pth")
         break
 
-    # Plot scores and loss every 100 episodes for monitoring
     if i_episode % PRINT_EVERY == 0:
-        # Plot loss
-        # fig_loss = plt.figure()
-        # ax_loss = fig_loss.add_subplot(111)
-        # plt.plot(np.arange(len(episode_losses)), episode_losses, label='Average Loss per Episode')
-        # plt.ylabel('Loss')
-        # plt.xlabel('Episode #')
-        # plt.title('DQN Training Loss for Breakout (RAM)')
-        # plt.legend()
-        # plt.grid(True)
-        # plt.savefig('training_loss_breakout_ram.png')
-        # plt.show()
-
-        # Plot scores
         fig = plt.figure()
         ax = fig.add_subplot(111)
         plt.plot(np.arange(len(scores)), scores, label='Score per Episode')
@@ -95,13 +81,10 @@ for i_episode in tqdm(range(1, N_EPISODES + 1), desc="Training Progress"):
         plt.show()
 
 
-
-# Save final model
 agent.save("dqn_breakout_ram_final.pth")
 env.close()
 print("Training finished.")
 
-# Final score plot
 fig = plt.figure()
 ax = fig.add_subplot(111)
 plt.plot(np.arange(len(scores)), scores, label='Score per Episode')
@@ -115,7 +98,6 @@ plt.grid(True)
 plt.savefig('training_scores_breakout_ram.png')
 print("Score plot saved as training_scores_breakout_ram.png")
 
-# Final loss plot
 fig_loss = plt.figure()
 ax_loss = fig_loss.add_subplot(111)
 plt.plot(np.arange(len(episode_losses)), episode_losses, label='Average Loss per Episode')
