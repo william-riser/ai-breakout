@@ -6,16 +6,6 @@ A Deep Q-Learning (DQN) implementation for the classic Atari Breakout game, usin
 
 This project implements a Deep Q-Network (DQN) agent that learns to play the Atari Breakout game using RAM state representation. The implementation includes comprehensive visualization and analysis tools to understand the agent's decision-making process. For the full project details, reference the [Final Paper](/FinalPaper.pdf)
 
-## Features
-
-- DQN implementation with RAM state representation
-- Real-time visualization of agent gameplay
-- Q-value analysis and visualization
-- RAM importance analysis
-- Action distribution analysis
-- Decision confidence tracking
-- Training progress visualization
-
 ## Requirements
 
 - Python 3.8+
@@ -64,12 +54,4 @@ The project generates several visualization files:
 - `decision_confidence.png`: Visualizes agent's decision confidence
 - `ram_importance.png`: Shows the importance of different RAM positions
 
-## References
 
-- [Deep Q-Network Paper](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf)
-- [ALE Documentation](https://ale.farama.org/environments/breakout/)
-- [DDPG Paper](https://arxiv.org/pdf/1509.02971)
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
